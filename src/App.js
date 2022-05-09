@@ -68,6 +68,11 @@ class App extends Component {
     });
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }
+
+  onUpdateStatus = (id) => {
+    // khai báo để sửa đổi trạng thái công việc
+    var index = this.findIndex(id);
+  }
   
   render() {
     var { tasks, isDisplayForm } = this.state; // cách viết khác của var tasks = this.state.tasks
@@ -110,7 +115,7 @@ class App extends Component {
             {/* list */}
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <TaskList tasks={tasks} />
+                <TaskList tasks={tasks} onUpdateStatus={this.onUpdateStatus} />
               </div>
             </div>
           </div>
