@@ -11,6 +11,10 @@ class TaskForm extends Component {
     var target = event.target;
     var name = target.name;
     var value = target.value;
+    //ép kiểu
+    if (name === "status") {
+      value = target.value === "true" ? true : false; 
+    }
     this.setState({
       [name]: value,
     });
@@ -18,7 +22,7 @@ class TaskForm extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state);
+    this.props.onSubmit(this.state);
   };
 
   onCloseForm = () => {
