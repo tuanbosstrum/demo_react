@@ -22,26 +22,7 @@ class App extends Component {
       });
     }
   }
-
-  onGenerateData = () => {
-    var tasks = [
-      { id: this.generateID(), name: "học lập trình", status: true },
-      { id: this.generateID(), name: "học Lập trình Java", status: true },
-      {
-        id: this.generateID(),
-        name: "học lập trình hướng đối tượng",
-        status: false,
-      },
-      { id: this.generateID(), name: "học Thể dục", status: true },
-      { id: this.generateID(), name: "học Ngoại ngữ", status: false },
-      { id: this.generateID(), name: "Kỹ năng giao tiếp", status: true },
-      { id: this.generateID(), name: "học Giáo dục quốc phòng", status: true },
-    ];
-    this.setState({
-      tasks: tasks,
-    });
-    localStorage.setItem("tasks", JSON.stringify(tasks));
-  };
+  
   // hàm random ra chuỗi
   s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
@@ -79,12 +60,13 @@ class App extends Component {
   };
 
   onSubmit = (data) => {
-    // var tasks = {
-    //   id : this.generateID(),
-    //   name : data.name,
-    //   status : true,
-    // }
-    console.log( data);
+    var { tasks } = this.state; //tasks = this.state.tasks;
+    data.id = this.generateID();//tasks
+    tasks.push(data);
+    this.setState({
+      tasks: tasks,
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
   
   render() {
@@ -122,13 +104,6 @@ class App extends Component {
               onClick={this.onToggleForm}
             >
               <span className="fa fa-plus mr-5">&nbsp;Thêm Công Việc</span>
-            </button>
-            <button
-              type="button"
-              className="btn btn-danger ml-5"
-              onClick={this.onGenerateData}
-            >
-              Generate Data
             </button>
             {/* search and sort */}
             <SearchSort />

@@ -23,10 +23,21 @@ class TaskForm extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit(this.state);
+    //hủy bỏ và close form sau khi thêm công việc
+    this.onClear();
+    this.onCloseForm();
   };
 
   onCloseForm = () => {
     this.props.onCloseForm();
+  };
+
+  // hủy form(reset form)
+  onClear = () => {
+    this.setState({
+      name: "",
+      status: false,
+    });
   };
 
   render() {
@@ -69,7 +80,10 @@ class TaskForm extends Component {
                 Thêm
               </button>
               &nbsp;
-              <button type="submit" className="btn btn-danger">
+              <button type="submit"
+                      className="btn btn-danger"
+                      onClick={this.onClear}
+              >
                 Hủy Bỏ
               </button>
             </div>
