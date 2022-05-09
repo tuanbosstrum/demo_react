@@ -70,10 +70,44 @@ class App extends Component {
   }
 
   onUpdateStatus = (id) => {
+    var { tasks } = this.state;
     // khai báo để sửa đổi trạng thái công việc
     var index = this.findIndex(id);
+    console.log(index);
+    if (index !== -1) {
+      tasks[index].status = !tasks[index].status;
+      this.setState({
+        tasks: tasks,
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+  }
+
+  findIndex = (id) => {
+    var { tasks } = this.state;
+    var result = -1;
+    tasks.forEach((task, index) =>{
+      if(task.id === id){
+        result = index;
+      }
+    });
+    return result;
   }
   
+  onDelete = (id) => {
+    var { tasks } = this.state;
+    // khai báo để sửa đổi trạng thái công việc
+    var index = this.findIndex(id);
+    console.log(index);
+    if (index !== -1) {
+      tasks.splice(index, 1);
+      this.setState({
+        tasks: tasks,
+      });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+    this.onCloseForm();
+  }
   render() {
     var { tasks, isDisplayForm } = this.state; // cách viết khác của var tasks = this.state.tasks
     var elmTaskForm = isDisplayForm ? (
@@ -115,7 +149,8 @@ class App extends Component {
             {/* list */}
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <TaskList tasks={tasks} onUpdateStatus={this.onUpdateStatus} />
+                <TaskList tasks={tasks} onUpdateStatus={this.onUpdateStatus}
+                                        onDelete={this.onDelete} />
               </div>
             </div>
           </div>
