@@ -25,6 +25,13 @@ class TaskForm extends Component {
         name : nextProps.task.name,
         status : nextProps.task.status,
       });
+    } else if (nextProps.task) {
+      //chuyển đổi sửa công việc thành thêm công việc
+      this.setState({
+        id : "",
+        name : "",
+        status : false,
+      });
     }
   }
 
