@@ -49,9 +49,19 @@ class App extends Component {
   }
 
   onToggleForm = () => {
-    this.setState({
-      isDisplayForm: !this.state.isDisplayForm,
-    });
+    if (this.state.isDisplayForm && this.state.taskEditing !== null) {
+      this.setState({
+        isDisplayForm: true,
+        taskEditing: null,
+      });
+    }else{
+      this.setState({
+        isDisplayForm: !this.state.isDisplayForm,
+        // đóng mở thêm sửa dữ liệu
+        taskEditing: null,
+      });
+    }
+    
   };
 
   onCloseForm = () => {
@@ -67,11 +77,19 @@ class App extends Component {
   }
 
   onSubmit = (data) => {
-    var { tasks } = this.state; //tasks = this.state.tasks;
-    data.id = this.generateID();//tasks
-    tasks.push(data);
+    var { tasks } = this.state; //tasks = this.state.tasks;\
+    if (data.id === "") {
+      data.id = this.generateID();//tasks
+      tasks.push(data);
+    }else{
+      //Sửa
+      var index = this.findIndex(data.id);
+      tasks[index] = data;
+    }
+
     this.setState({
       tasks: tasks,
+      taskEditing: null,
     });
     localStorage.setItem("tasks", JSON.stringify(tasks));
   }

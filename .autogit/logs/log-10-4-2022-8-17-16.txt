@@ -1,0 +1,19 @@
+-------------------- Auto-Git Log --------------------
+		Tue May 10 2022 08:17:16 GMT+0700 (Giờ Đông Dương)
+------------------------------------------------------
+
+Modified files:
+* src/App.js
+* src/components/TaskForm.js
+* src/components/TaskItem.js
+* src/components/TaskList.js
+
+
+Created files:
+* .autogit/logs/log-9-4-2022-22-43-37.txt
+
+
+Deleted files:
+
+
+Renamed files:

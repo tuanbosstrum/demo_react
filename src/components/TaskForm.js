@@ -7,12 +7,23 @@ class TaskForm extends Component {
     this.state = { id: "", name: "", status: true };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.task) {
       this.setState({
         id : this.props.task.id,
         name : this.props.task.name,
         status : this.props.task.status,
+      });
+    }
+  }
+
+  //khắc phục lỗi thêm công việc và cập nhật công việc
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.task) {
+      this.setState({
+        id : nextProps.task.id,
+        name : nextProps.task.name,
+        status : nextProps.task.status,
       });
     }
   }
@@ -55,11 +66,13 @@ class TaskForm extends Component {
     return (
       <div className="panel panel-warning">
         <div className="panel-heading">
-          <h3 className="panel-title">Thêm Công Việc</h3>
-          <span
-            className="fa fa-times-circle text-right text-close"
-            onClick={this.onCloseForm}
-          ></span>
+          <h3 className="panel-title">
+            {id !== "" ? "Cập nhật công việc" : "Thêm công việc"}
+            <span
+              className="fa fa-times-circle text-right text-close"
+              onClick={this.onCloseForm}
+            ></span>
+          </h3>
         </div>
         <div className="panel-body">
           {/* form */}
