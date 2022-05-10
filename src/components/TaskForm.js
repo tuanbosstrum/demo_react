@@ -4,7 +4,17 @@ import React, { Component } from "react";
 class TaskForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", status: true };
+    this.state = { id: "", name: "", status: true };
+  }
+
+  componentDidMount() {
+    if (this.props.task) {
+      this.setState({
+        id : this.props.task.id,
+        name : this.props.task.name,
+        status : this.props.task.status,
+      });
+    }
   }
 
   onChange = (event) => {
@@ -41,6 +51,7 @@ class TaskForm extends Component {
   };
 
   render() {
+    var {id} = this.state;
     return (
       <div className="panel panel-warning">
         <div className="panel-heading">

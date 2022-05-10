@@ -11,6 +11,7 @@ class App extends Component {
     this.state = {
       tasks: [], // mảng chứa các công việc
       isDisplayForm: false, // biến để hiển thị form
+      taskEditing: null, // biến để lưu công việc đang được chỉnh sửa
     };
   }
 
@@ -58,6 +59,12 @@ class App extends Component {
       isDisplayForm: false,
     });
   };
+
+  onShowForm = () => {
+    this.setState({
+      isDisplayForm: true,
+    });
+  }
 
   onSubmit = (data) => {
     var { tasks } = this.state; //tasks = this.state.tasks;
@@ -108,10 +115,24 @@ class App extends Component {
     }
     this.onCloseForm();
   }
+
+  onUpdate = (id) => {
+    var { tasks } = this.state;
+    var index = this.findIndex(id);
+    var taskEditing = tasks[index];
+    this.setState({
+      taskEditing: taskEditing,
+    });
+    this.onShowForm();
+  }
+
   render() {
-    var { tasks, isDisplayForm } = this.state; // cách viết khác của var tasks = this.state.tasks
+    var { tasks, isDisplayForm, taskEditing } = this.state; // cách viết khác của var tasks = this.state.tasks
     var elmTaskForm = isDisplayForm ? (
-      <TaskForm onSubmit={this.onSubmit} onCloseForm={this.onCloseForm} />
+      <TaskForm 
+      onSubmit={this.onSubmit} 
+      onCloseForm={this.onCloseForm}
+      task={taskEditing} />
     ) : (
       ""
     );
@@ -149,8 +170,11 @@ class App extends Component {
             {/* list */}
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <TaskList tasks={tasks} onUpdateStatus={this.onUpdateStatus}
-                                        onDelete={this.onDelete} />
+                <TaskList 
+                tasks={tasks} 
+                onUpdateStatus={this.onUpdateStatus} 
+                onDelete={this.onDelete} 
+                onUpdate={this.onUpdate} />
               </div>
             </div>
           </div>
