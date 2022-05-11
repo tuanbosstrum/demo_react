@@ -61,7 +61,6 @@
 .text-right {
   float: right;
   cursor: pointer;
-  margin-top: -15px;
 }
 
 .text-right:hover {
