@@ -45,10 +45,10 @@ class TaskList extends Component {
           <tr>
             <td></td>
             <td>
-              <input type="text" class="form-control" name="filterName" value={filterName} onChange={onChange} />
+              <input type="text" class="form-control" name="filterName" value={filterName} onChange={this.onChange} />
             </td>
             <td>
-              <select className="form-control" name="filterStatus" value={filterStatus} onChange={onChange} >
+              <select className="form-control" name="filterStatus" value={filterStatus} onChange={this.onChange} >
                 <option value="-1">Tất Cả</option>
                 <option value="0">Ẩn</option>
                 <option value="1">Kích Hoạt</option>

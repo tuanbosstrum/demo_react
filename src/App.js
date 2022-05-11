@@ -12,6 +12,10 @@ class App extends Component {
       tasks: [], // mảng chứa các công việc
       isDisplayForm: false, // biến để hiển thị form
       taskEditing: null, // biến để lưu công việc đang được chỉnh sửa
+      filter: {
+        name: "",
+        status: -1,
+      }
     };
   }
 
@@ -145,11 +149,25 @@ class App extends Component {
   }
 
   onFilter = (filterName, filterStatus) => {
-    console.log(filterName, "-" , filterStatus);
+    filterStatus = parseInt(filterStatus, 10);
+    console.log(typeof filterStatus);
+    this.setState({
+      filter: {
+        name: filterName.toLowerCase(),
+        status: filterStatus,
+      }
+    });
   }
 
   render() {
-    var { tasks, isDisplayForm, taskEditing } = this.state; // cách viết khác của var tasks = this.state.tasks
+    var { tasks, isDisplayForm, taskEditing, filter } = this.state; // cách viết khác của var tasks = this.state.tasks
+    if (filter) {
+      if (filter.name) {
+        tasks = tasks.filter((task) => {
+          return task.name.toLowerCase().indexOf(filter.name) !== -1;
+        });
+      }
+    }
     var elmTaskForm = isDisplayForm ? (
       <TaskForm 
       onSubmit={this.onSubmit} 
