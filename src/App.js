@@ -144,6 +144,10 @@ class App extends Component {
     this.onShowForm();
   }
 
+  onFilter = (filterName, filterStatus) => {
+    console.log(filterName, "-" , filterStatus);
+  }
+
   render() {
     var { tasks, isDisplayForm, taskEditing } = this.state; // cách viết khác của var tasks = this.state.tasks
     var elmTaskForm = isDisplayForm ? (
@@ -192,7 +196,8 @@ class App extends Component {
                 tasks={tasks} 
                 onUpdateStatus={this.onUpdateStatus} 
                 onDelete={this.onDelete} 
-                onUpdate={this.onUpdate} />
+                onUpdate={this.onUpdate}
+                onFilter={this.onFilter} />
               </div>
             </div>
           </div>
