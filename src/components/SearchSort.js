@@ -8,7 +8,7 @@ class SearchSort extends Component {
     return (
       <div className="row mt-15">
         {/* search */}
-        <Search />
+        <Search onSearch = {this.props.onSearch}/>
         {/* sort */}
         <Sort />
       </div>
