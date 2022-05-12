@@ -1,0 +1,18 @@
+-------------------- Auto-Git Log --------------------
+		Thu May 12 2022 15:38:15 GMT+0700 (Giờ Đông Dương)
+------------------------------------------------------
+
+Modified files:
+* src/App.js
+* src/components/SearchSort.js
+* src/components/Sort.js
+
+
+Created files:
+* .autogit/logs/log-12-4-2022-15-7-56.txt
+
+
+Deleted files:
+
+
+Renamed files:
