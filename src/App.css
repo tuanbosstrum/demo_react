@@ -67,6 +67,8 @@
   color: red;
 }
 
+/* đánh dấu tích  */
+
 .sort_selected::after {
   content: '\f00c';
   font-family: FontAwesome;

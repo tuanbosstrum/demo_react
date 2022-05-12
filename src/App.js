@@ -16,6 +16,10 @@ class App extends Component {
         name: "",
         status: -1,
       },
+      sort: {
+        by: "name",
+        value: 1,
+      },
       keyword : "",
     };
   }
