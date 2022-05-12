@@ -4,6 +4,7 @@ import "./App.css";
 import TaskForm from "./components/TaskForm";
 import SearchSort from "./components/SearchSort";
 import TaskList from "./components/TaskList";
+import _ from "lodash";
 
 class App extends Component {
   constructor(props) {
@@ -104,7 +105,11 @@ class App extends Component {
   onUpdateStatus = (id) => {
     var { tasks } = this.state;
     // khai báo để sửa đổi trạng thái công việc
-    var index = this.findIndex(id);
+    // var index = this.findIndex(id);
+    // xài thư viện lodash
+    var index = _.findIndex(tasks, (task) =>{
+      return task.id === id;
+    });
     console.log(index);
     if (index !== -1) {
       tasks[index].status = !tasks[index].status;
@@ -200,11 +205,16 @@ class App extends Component {
       });
     }
 
-    if(keyword){
-      tasks = tasks.filter((task) => {
-        return task.name.toLowerCase().indexOf(keyword) !== -1;
-      });
-    }
+    // if(keyword){
+    //   tasks = tasks.filter((task) => {
+    //     return task.name.toLowerCase().indexOf(keyword) !== -1;
+    //   });
+    // }
+    
+    //hàm tìm kiếm trong thư viện Lodash
+    tasks = _.filter(tasks, (task) =>{
+        return task.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
+    });
 
     if(sortBy === "name"){
       tasks.sort((a,b) =>{
