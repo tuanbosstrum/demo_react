@@ -161,12 +161,20 @@ class App extends Component {
 
   render() {
     var { tasks, isDisplayForm, taskEditing, filter } = this.state; // cách viết khác của var tasks = this.state.tasks
+    //lọc công việc
     if (filter) {
       if (filter.name) {
         tasks = tasks.filter((task) => {
           return task.name.toLowerCase().indexOf(filter.name) !== -1;
         });
       }
+      tasks = tasks.filter((task) => {
+        if(filter.status === -1){
+          return task;
+        }else{
+          return task.status === (filter.status === 1 ? true : false)
+        }
+      });
     }
     var elmTaskForm = isDisplayForm ? (
       <TaskForm 
