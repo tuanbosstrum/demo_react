@@ -8,10 +8,10 @@ class Sort extends Component {
     console.log(nextProps);
   }
 
-  constructor(props) {
-    super(props);
+  // constructor(props) {
+  //   super(props);
     
-  }
+  // }
   
   onClick = (sortBy, sortValue) => {
     this.props.onSort(sortBy, sortValue);
